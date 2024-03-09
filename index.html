@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <script src="./script.js"></script>
+    <title>Expense Manager</title>
+</head>
+<body>
+    <div>
+
+        <div id="app">
+            <h1>Expense Manager</h1>
+            <div>
+                <label>Total Money:</label>
+                <input type="number" id="totalMoney" placeholder="Enter total money">
+            </div>
+
+            <div>
+                <label>Days Left:</label>
+                <input type="number" id="daysLeft" placeholder="Enter days left">
+            </div>
+            <button onclick="calculateAverage()">Calculate Average</button>
+            <button onclick="submitExpenses()">Submit Expenses</button>
+        </div>
+
+        <div>
+            <div id="averageDisplay" style="display: none;">
+                <p>Daily Average: <span id="dailyAverage">0</span></p>
+            </div>
+            <table id="daysTable" style="display: none;">
+            </table>
+            <div id="summary" style="display: none;">
+            </div>
+        </div>
+    </div>
+
+    <div id="pagination" class="pagination" style="display: none;">
+        <button class="page-link" onclick="changePage(-1)">Previous</button>
+        <span id="currentPage">1</span>
+        <button class="page-link" onclick="changePage(1)">Next</button>
+    </div>
+
+</body>
+<script>
+    window.onbeforeunload = function () {
+        saveDataToLocalStorage();
+    };
+    
+    // Load data when the page is loaded
+    loadDataFromLocalStorage();
+    
+    // Call these functions to initialize pagination
+    generateDaysTable();
+    updatePagination();
+</script>
+
+</html>
